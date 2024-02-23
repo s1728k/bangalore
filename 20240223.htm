@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
+        <!-- <script src="assets/js/vue2.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16"></script>
+        <!-- <script src="https://unpkg.com/vue-router@3.0.0/dist/vue-router.js"></script> -->
+        <!-- <script src="https://unpkg.com/page/page.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+        <!-- <script src="assets/js/jquery.min.js"></script> -->
+        <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+        <!-- <style>
+            @font-face {
+            font-family: myFirstFont;
+            src: url(assets/js/glyphicons-halflings-regular.woff);
+            }
+        </style> -->
+    </head>
+    <body>
+        <div id="app">
+            Email: <input type="email" name="email" v-model="email"/>
+            Password: <input type="password" name="password" v-model="password"/>
+            <button v-on:click="login">Login</button>
+            <textarea>{{ info }}</textarea>
+        </div>
+    </body>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return{
+                    email: 's1728k@gmail.com',
+                    password: '',
+                    info: null,
+                }
+            },
+            methods: {
+                login: function () {
+                    axios
+                    .post('/5',{"email":this.email,"app_id":"3","secret":"18439348c301015a8eaa19a04d06c76a"}, {
+     headers: {
+          'content-type': 'application/json',
+     },
+})
+                    .then(response => (this.info = response.data))
+                    .catch(function (error) {
+                        this.info = error;
+                    });
+                }
+            },
+            mounted(){
+                // const requestOptions = {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({"email":"s1728k@gmail.com","app_id":"3","secret":"18439348c301015a8eaa19a04d06c76a"})
+                // };
+                // fetch('https://testapi.jasonwatmore.com/products', requestOptions)
+                //     .then(response => response.json())
+                //     .then(data => product.value = data);
+                // axios
+                // .get("http://phpapp.localhost/mobile/7",{"_token":"p9tgkekl13ptdc0br449sqcgl0"})
+                // .then(r=>{
+                //     alert(r);
+                //     this.email=r
+                // });
+                // axios.create({
+                //     baseURL: "",
+                //     headers: {
+                //         "Content-type": "application/json"
+                //     }
+                // });
+                // axios
+                //     .get('http://phpapp.localhost/mobile/7',{"_token":"p9tgkekl13ptdc0br449sqcgl0"})
+                //     .then(response => (
+                //         // alert(1)
+                //         this.info = response.data
+                //     ))
+                // alert(1);
+                axios.defaults.baseURL = 'https://000mbs.in/mobile';
+                // axios.defaults.baseURL = 'https://phpapp.localhost/mobile';
+            }
+        })
+    </script>
+</html>
